@@ -1,6 +1,33 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
+int main() {
+    int n; cin >> n;
+    vector<int> arr(n), brr(n);
+    vector<long long> p1(n+1), p2(n+1);
+    for (int i=0;i<n;i++) {
+        cin >> arr[i];
+        brr[i] = arr[i];
+    }
+
+    sort(brr.begin(), brr.end());
+    for (int i=1;i<=n;i++) {
+        p1[i] = arr[i-1] + p1[i-1];
+        p2[i] = brr[i-1] + p2[i-1];
+    }
+    int l; cin >> l;
+    while (l--) {
+        int t,a,b;
+        cin >> t >> a >> b;
+        if (t==1) {
+            cout << p1[b]-p1[a-1] << endl;
+        } else {
+            cout << p2[b]-p2[a-1] << endl;
+        }
+    }
+}
+/*
 int main() {
     int x,y,z,n,temp;
     long long int sum,c2,d2;
@@ -31,3 +58,4 @@ int main() {
         cout << sum << endl;
     }
 }
+*/

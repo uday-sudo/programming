@@ -2,16 +2,21 @@
 using namespace std;
 
 void solution(long long b) {
-    long long p,m; cin >> p >> m;
+    long long int p,m; cin >> p >> m;
 
-    long long r = b%m;
-    for (long long i=0;i<p-1;i++) {
-        r = (r*b) % m;
+    long long int ans = 1;
+    b%=m;
+    while (p) {
+        if (p&1) {
+            ans = (ans*b) % m;            
+        }
+        b= (b*b) % m;
+        p >>= 1;
     }
-    cout << r << endl;
+    cout << ans << '\n';
 }
 
 int main() {
-    long long t;
+    long long int t;
     while (cin >> t) solution(t);
 }
